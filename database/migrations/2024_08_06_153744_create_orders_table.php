@@ -11,10 +11,10 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('client_id')->references('clients')->on('uuid')->onDelete('cascade');
-            $table->foreignUuid('product_id')->references('products')->on('uuid')->onDelete('cascade');
-            $table->foreignUuid('user_id')->references('users')->on('uuid')->onDelete('cascade');
-            $table->foreignId('payment_method')->references('payment_methods')->on('id')->onDelete('cascade');
+            $table->foreignUuid('client_id')->references('uuid')->on('clients')->onDelete('cascade');
+            $table->foreignUuid('product_id')->references('uuid')->on('products')->onDelete('cascade');
+            $table->foreignUuid('user_id')->references('uuid')->on('users')->onDelete('cascade');
+            $table->foreignId('payment_method')->references('id')->on('payment_methods')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -9,14 +9,17 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->uuid()->unique();
             $table->string('name');
-            $table->string('details');
-            $table->string('description');
-            $table->string('quantity_in_stock');
-            $table->foreignId('categorie_id')->references('product_categories')->on('id')->onDelete('cascade');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->date('start_date');
+            $table->date('end_date')->nullable();
+            $table->foreignId('position')->references('id')->on('positions')->onDelete('cascade');
+            $table->string('benefits')->nullable();
+            $table->string('comission')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('users');
     }
 };
