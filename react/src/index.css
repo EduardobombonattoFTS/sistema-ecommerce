@@ -241,3 +241,31 @@ table > tbody > tr > td {
         transform: translateY(0);
     }
 }
+
+.search-bar {
+  display: flex;
+  align-items: center; /* Alinha verticalmente os itens no centro */
+  gap: 10px; /* Espaço entre a barra de pesquisa e o botão */
+  margin-bottom: 20px; /* Espaço abaixo da barra de pesquisa */
+}
+
+.search-bar input[type="text"] {
+  flex: 1; /* Permite que a barra de pesquisa ocupe todo o espaço disponível */
+  padding: 8px; /* Espaçamento interno */
+  border: 1px solid #ccc; /* Borda para a barra de pesquisa */
+  border-radius: 4px; /* Cantos arredondados */
+}
+
+.search-bar button {
+  padding: 8px 16px; /* Espaçamento interno do botão */
+  background-color: #007bff; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  border: none; /* Remove a borda padrão */
+  border-radius: 4px; /* Cantos arredondados */
+  cursor: pointer; /* Cursor de mão para indicar interatividade */
+  font-size: 16px; /* Tamanho da fonte */
+}
+
+.search-bar button:hover {
+  background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+}

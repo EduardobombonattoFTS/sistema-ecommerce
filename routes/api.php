@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientAddressController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -28,5 +29,12 @@ Route::controller(ClientController::class)->prefix('client')->name('client')->gr
     Route::post('/create', 'createClientOnDatabase')->name('create');
     Route::put('/update/{client_uuid}', 'updateClientOnDatabase')->name('update');
     Route::delete('/delete/{client_uuid}', 'deleteClientFromDatabase')->name('delete');
-    Route::get('/get_all', 'createClientOnDatabase')->name('getAll');
+    Route::get('/get_all', 'getAllDataFromDatabase')->name('getAll');
+});
+
+Route::controller(ClientAddressController::class)->prefix('client_address')->name('client_address')->group(function () {
+    Route::post('/create', 'createClientAddressOnDatabase')->name('create');
+    Route::put('/update/{client_uuid}', 'updateClientAddressOnDatabase')->name('update');
+    Route::delete('/delete/{client_uuid}', 'destroyClientAddressFromDatabase')->name('delete');
+    Route::get('/get_all', 'getAllDataFromDatabase')->name('getAll');
 });

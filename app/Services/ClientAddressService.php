@@ -2,13 +2,13 @@
 
 namespace App\Services;
 
-use App\Models\Client;
+use App\Models\ClientsAddress;
 
-class ClientService {
-    protected Client $model;
+class ClientAddressService {
+    protected ClientsAddress $model;
     private bool $viewResponse = true;
 
-    public function __construct(Client $model = null) {
+    public function __construct(ClientsAddress $model = null) {
         $this->model = $model;
     }
 
@@ -59,49 +59,29 @@ class ClientService {
         try {
             $all = $this->model->orderBy('id')->get();
             if ($all->count() > 0)
-                return $this->success("Clientes retornados.", $all, 200, false);
+                return $this->success("Endereços dos clientes retornados.", $all, 200, false);
 
-            return $this->notFound("Nenhum cliente encontrado.", [], false);
+            return $this->notFound("Nenhum endereço de cliente retornado.", [], false);
         } catch (\Exception $e) {
 
-            return $this->fail("Houve uma falha ao retornar os clientes", $e);
+            return $this->fail("Houve uma falha ao retornar os endereços de clientes", $e);
         }
     }
 
-    protected function validateCpf($cpf) {
-        if (empty($cpf)) {
-            return "O campo CPF obrigatório, por favor preencher.";
-        }
-        if (strlen($cpf) != 11) {
-            return "O CPF inválido. Deve ter 11 dígitos.";
-        }
-        if (!ctype_digit($cpf)) {
-            return "O CPF inválido. Deve conter apenas números.";
-        }
-        if ($this->model->where('cpf', $cpf)->first()) {
-            return "CPF já cadastrado em nosso sistema .";
-        }
-        return true;
-    }
-    public function createClientOnDatabase(array $data, $viewResponse = null) {
+    public function createClientAddressOnDatabase(array $data, $viewResponse = null) {
         $this->viewResponse($viewResponse);
-
-        $cpfValidation = $this->validateCpf($data['cpf']);
-        if ($cpfValidation !== true) {
-            return $this->fail($cpfValidation, [], false);
-        }
         try {
             $create = $this->model->create($data);
             if (!$create)
-                return $this->notFound("Não foi possível cadastrar o cliente, favor verificar os dados.", [], false);
+                return $this->notFound("Não foi possível cadastrar o endereço, favor verificar os dados.", [], false);
 
-            return $this->success("Cliente cadastrado com sucesso.", $create, 200, false);
+            return $this->success("Endereço de cliente cadastrado com sucesso.", $create, 200, false);
         } catch (\Exception $e) {
 
-            return $this->fail("Falha ao inserir o cadastro do cliente.", $e);
+            return $this->fail("Falha ao inserir o cadastro do endereço cliente.", $e);
         }
     }
-    public function updateClientOnDatabase($data, $uuid, $viewResponse = null) {
+    public function updateClientAddressOnDatabase($data, $uuid, $viewResponse = null) {
         $this->viewResponse($viewResponse);
 
         if (!$this->model->where('uuid', $uuid)) {
@@ -111,36 +91,36 @@ class ClientService {
 
             $update = $this->model->where('uuid', $uuid);
             if ($update->doesntExist())
-                return $this->notFound("Cliente não encontrado, favor verificar as informações", [], false);
+                return $this->notFound("Enderço de cliente não encontrado, favor verificar as informações", [], false);
 
             $update = $update->first();
             foreach ($data as $key => $value) {
                 if ($value !== null) $update->$key = $value;
             }
             if (!$update->save())
-                return $this->notFound("Não foi possivel salvar as alterações do registro.", [], false);
+                return $this->notFound("Não foi possivel salvar as alterações do endereço.", [], false);
 
-            return $this->success("Dados do cliente alterados com sucesso.", $data, 200, false);
+            return $this->success("Dados do enderço do cliente alterados com sucesso.", $data, 200, false);
         } catch (\Exception $e) {
-            return $this->fail("Falha ao atualizar dados do cliente", $e);
+            return $this->fail("Falha ao atualizar dados do endereço do cliente", $e);
         }
     }
 
-    public function destroyClientOnDatabase($uuid, $viewResponse = null) {
+    public function destroyClientAddressFromDatabase($uuid, $viewResponse = null) {
         $this->viewResponse($viewResponse);
 
         try {
             $destroy = $this->model->where('uuid', $uuid);
             if ($destroy->doesntExist())
-                return $this->notFound("Cliente não encontrado, favor verificar as informações.", [], false);
+                return $this->notFound("Endereço de cliente não encontrado, favor verificar as informações.", [], false);
             $destroy = $destroy->delete();
             if (!$destroy)
-                return $this->notFound("Não foi possível excluir o cliente, favor verficiar as informações.", [], false);
+                return $this->notFound("Não foi possível excluir o endereço do cliente, favor verficiar as informações.", [], false);
 
-            return $this->success("Cliente excluído com sucesso.", $destroy, 200, false);
+            return $this->success("Endereço do cliente excluído com sucesso.", $destroy, 200, false);
         } catch (\Exception $e) {
 
-            return $this->fail("Houve uma falha ao excluir o cliente.", $e);
+            return $this->fail("Houve uma falha ao excluir o endereço de cliente.", $e);
         }
     }
 }
