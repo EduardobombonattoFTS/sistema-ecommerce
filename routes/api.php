@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::controller(UserController::class)->prefix('user')->name('user')->group(function () {
     Route::post('/create', 'createUserOnDatabase')->name('create');
+});
+
+Route::controller(ClientController::class)->prefix('client')->name('client')->group(function () {
+    Route::post('/create', 'createClientOnDatabase')->name('create');
+    Route::put('/update/{client_uuid}', 'updateClientOnDatabase')->name('update');
+    Route::delete('/delete/{client_uuid}', 'deleteClientFromDatabase')->name('delete');
+    Route::get('/get_all', 'createClientOnDatabase')->name('getAll');
 });
