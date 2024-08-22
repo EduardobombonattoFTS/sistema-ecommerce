@@ -7,6 +7,7 @@ import DefaulLayout from "./components/DefaultLayout";
 import GuestLayout from "./components/GuestLayout";
 import Dashboard from "./views/Dashboard";
 import Clients from "./views/clients/Clients";
+import ClientRegistration from "./views/clients/components/ClientRegistration";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/clients",
         element: <Clients />,
+      },
+      {
+        path: "/clients/registration",
+        element: <ClientRegistration />,
       },
     ],
   },
