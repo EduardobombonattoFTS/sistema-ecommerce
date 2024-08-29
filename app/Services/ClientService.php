@@ -46,8 +46,8 @@ class ClientService {
     public function success($message, $data = [], $statusCode = 200, $breakCode = true) {
         return $this->createResponse($message, $data, null, $statusCode, true, $breakCode);
     }
-    public function notFound($messageError, $data = [], $breakCode = true) {
-        return $this->createResponse("Nenhuma informação existente!", $data, $messageError, 404, false, $breakCode);
+    public function notFound($messageError, $data = [], $statusCode = 404, $breakCode = true) {
+        return $this->createResponse("Nenhuma informação existente!", $data, $messageError, $statusCode, false, $breakCode);
     }
     public function fail($messageError, $data = [], $statusCode = 400, $breakCode = true) {
         return $this->createResponse($messageError, $data, $messageError, $statusCode, false, $breakCode);
@@ -61,7 +61,7 @@ class ClientService {
             if ($all->count() > 0)
                 return $this->success("Clientes retornados.", $all, 200, false);
 
-            return $this->notFound("Nenhum cliente encontrado.", [], false);
+            return $this->notFound("Nenhum cliente encontrado.", [], 200, false);
         } catch (\Exception $e) {
 
             return $this->fail("Houve uma falha ao retornar os clientes", $e);
@@ -88,7 +88,7 @@ class ClientService {
 
         $cpfValidation = $this->validateCpf($data['cpf']);
         if ($cpfValidation !== true) {
-            return $this->fail($cpfValidation, [], false);
+            return $this->fail($cpfValidation, [], 200, false);
         }
         try {
             $create = $this->model->create($data);
