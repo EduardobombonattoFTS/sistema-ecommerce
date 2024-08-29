@@ -264,9 +264,40 @@ table > tbody > tr > td {
   border: none;
   border-radius: 4px;
   font-size: 1rem;
-  cursor: pointer; /* Mão ao passar o mouse sobre o botão */
+  cursor: pointer;
 }
 
 .search-bar button:hover {
-  background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+  background-color: #0056b3;
+}
+
+.edit-button {
+  background-color: #c9c9c9;
+  border: none;
+  border-radius: 8px;
+  color: #333;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+  background-color: #d9d9d9;
+}
+
+
+.delete-button {
+  background-color: #ff4d4d;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #ff1a1a;
 }

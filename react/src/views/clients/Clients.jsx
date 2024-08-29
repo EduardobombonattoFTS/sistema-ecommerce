@@ -37,6 +37,20 @@ export default function Clients() {
     navigate(`/clients/edit/${uuid}`, { state: { clients } });
   };
 
+  const handleDeleteClient = (uuid, name) => {
+    if (window.confirm(`Deseja excluir ${name} da lista de clientes?`)) {
+      clientService
+        .deleteClient(uuid)
+        .then((response) => {
+          setClients(clients.filter((client) => client.uuid !== uuid));
+          setSuccessMessage(response.message);
+        })
+        .catch((response) => {
+          setErrorMessage(response.message);
+        });
+    }
+  };
+
   const handleRedirectClientRegistration = () => {
     setRedirectClienteRegistration(true);
   };
@@ -72,6 +86,7 @@ export default function Clients() {
       <ShowClients
         clientsToShow={clientsToShow}
         onEditClient={handleEditClient}
+        onDeleteClient={handleDeleteClient}
       />
     </div>
   );

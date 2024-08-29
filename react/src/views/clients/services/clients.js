@@ -24,4 +24,8 @@ const updateClient = (uuid, newObject) => {
   return request.then((response) => response.data);
 };
 
-export default { getAll, create, createAdress, updateClient };
+const deleteClient = (uuid) => {
+  const request = axios.delete(`${baseUrl}/api/clients/delete/${uuid}`);
+  return request.then((response) => response.data);
+};
+export default { getAll, create, createAdress, updateClient, deleteClient };

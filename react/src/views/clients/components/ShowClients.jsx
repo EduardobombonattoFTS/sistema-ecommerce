@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-
-const ShowClients = ({ clientsToShow, onEditClient }) => {
+const ShowClients = ({ clientsToShow, onEditClient, onDeleteClient }) => {
   return (
     <div>
       <table>
@@ -22,8 +20,17 @@ const ShowClients = ({ clientsToShow, onEditClient }) => {
                 <td>{client.phone}</td>
                 <td>{client.cpf}</td>
                 <td>
-                  <button onClick={() => onEditClient(client.uuid)}>
+                  <button
+                    className="edit-button"
+                    onClick={() => onEditClient(client.uuid)}
+                  >
                     Editar
+                  </button>
+                  <button
+                    className="delete-button"
+                    onClick={() => onDeleteClient(client.uuid, client.name)}
+                  >
+                    Excluir
                   </button>
                 </td>
               </tr>
