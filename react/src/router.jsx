@@ -8,6 +8,7 @@ import GuestLayout from "./components/GuestLayout";
 import Dashboard from "./views/Dashboard";
 import Clients from "./views/clients/Clients";
 import ClientRegistration from "./views/clients/components/ClientRegistration";
+import EditClient from "./views/clients/components/EditClient";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/clients/registration",
         element: <ClientRegistration />,
+      },
+      {
+        path: "/clients/edit/:uuid",
+        element: <EditClient />,
       },
     ],
   },

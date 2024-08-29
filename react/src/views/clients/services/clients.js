@@ -16,7 +16,12 @@ const createAdress = (newObject) => {
     `${baseUrl}/api/clients_address/create`,
     newObject
   );
-  return request.then((response) => response);
+  return request.then((response) => response.data);
 };
 
-export default { getAll, create, createAdress };
+const updateClient = (uuid, newObject) => {
+  const request = axios.put(`${baseUrl}/api/clients/update/${uuid}`, newObject);
+  return request.then((response) => response.data);
+};
+
+export default { getAll, create, createAdress, updateClient };

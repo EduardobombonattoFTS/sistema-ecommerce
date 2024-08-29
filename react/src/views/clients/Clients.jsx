@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import clientService from "./services/clients";
 import ShowClients from "./components/ShowClients";
 import Notification from "./components/Notification";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Clients() {
   const [clients, setClients] = useState([]);
@@ -11,6 +11,7 @@ export default function Clients() {
   const [searchTerm, setSearchTerm] = useState("");
   const [redirectClienteRegistration, setRedirectClienteRegistration] =
     useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     clientService
@@ -32,9 +33,14 @@ export default function Clients() {
       });
   }, []);
 
+  const handleEditClient = (uuid) => {
+    navigate(`/clients/edit/${uuid}`, { state: { clients } });
+  };
+
   const handleRedirectClientRegistration = () => {
     setRedirectClienteRegistration(true);
   };
+
   if (redirectClienteRegistration) {
     return <Navigate to="/clients/registration" />;
   }
@@ -63,7 +69,10 @@ export default function Clients() {
           Novo Cliente
         </button>
       </div>
-      <ShowClients clientsToShow={clientsToShow} />
+      <ShowClients
+        clientsToShow={clientsToShow}
+        onEditClient={handleEditClient}
+      />
     </div>
   );
 }

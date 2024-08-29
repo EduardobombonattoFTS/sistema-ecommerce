@@ -1,4 +1,6 @@
-const ShowClients = ({ clientsToShow }) => {
+import { Link } from "react-router-dom";
+
+const ShowClients = ({ clientsToShow, onEditClient }) => {
   return (
     <div>
       <table>
@@ -19,6 +21,11 @@ const ShowClients = ({ clientsToShow }) => {
                 <td>{client.email}</td>
                 <td>{client.phone}</td>
                 <td>{client.cpf}</td>
+                <td>
+                  <button onClick={() => onEditClient(client.uuid)}>
+                    Editar
+                  </button>
+                </td>
               </tr>
             );
           })}
