@@ -9,6 +9,7 @@ import Dashboard from "./views/Dashboard";
 import Clients from "./views/clients/Clients";
 import ClientRegistration from "./views/clients/components/ClientRegistration";
 import EditClient from "./views/clients/components/EditClient";
+import ClientsLayout from "./views/clients/ClientLayout";
 
 const router = createBrowserRouter([
   {
@@ -29,15 +30,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/clients",
-        element: <Clients />,
-      },
-      {
-        path: "/clients/registration",
-        element: <ClientRegistration />,
-      },
-      {
-        path: "/clients/edit/:uuid",
-        element: <EditClient />,
+        element: <ClientsLayout />,
+        children: [
+          {
+            path: "",
+            element: <Clients />,
+          },
+          {
+            path: "registration",
+            element: <ClientRegistration />,
+          },
+          {
+            path: "edit/:uuid",
+            element: <EditClient />,
+          },
+        ],
       },
     ],
   },
