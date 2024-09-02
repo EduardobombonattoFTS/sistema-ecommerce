@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClientAddressController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductCategorieController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,9 +41,16 @@ Route::controller(ClientAddressController::class)->prefix('clients_address')->na
     Route::get('/get_all', 'getAllDataFromDatabase')->name('getAll');
 });
 
-Route::controller(ProductCategorieController::class)->prefix('products_categories')->name('product_categorie')->group(function () {
+Route::controller(ProductCategorieController::class)->prefix('products_categories')->name('products_categories')->group(function () {
     Route::post('/create', 'createProductCategorieOnDatabase')->name('create');
     Route::put('/update/{product_categorie_id}', 'updateProductCategorieOnDatabase')->name('update');
     Route::delete('/delete/{product_categorie_id}', 'deleteProductCategorieFromDatabase')->name('delete');
+    Route::get('/get_all', 'getAllDataFromDatabase')->name('getAll');
+});
+
+Route::controller(ProductController::class)->prefix('products')->name('products')->group(function () {
+    Route::post('/create', 'createProductOnDatabase')->name('create');
+    Route::put('/update/{product_uuid}', 'updateProductOnDatabase')->name('update');
+    Route::delete('/delete/{product_uuid}', 'deleteProductFromDatabase')->name('delete');
     Route::get('/get_all', 'getAllDataFromDatabase')->name('getAll');
 });
