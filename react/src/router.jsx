@@ -10,6 +10,8 @@ import Clients from "./views/clients/Clients";
 import ClientRegistration from "./views/clients/components/ClientRegistration";
 import EditClient from "./views/clients/components/EditClient";
 import ClientsLayout from "./views/clients/ClientLayout";
+import ProductsLayout from "./views/products/ProductLayout";
+import Products from "./views/products/Products";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,16 @@ const router = createBrowserRouter([
           {
             path: "edit/:uuid",
             element: <EditClient />,
+          },
+        ],
+      },
+      {
+        path: "/products",
+        element: <ProductsLayout />,
+        children: [
+          {
+            path: "",
+            element: <Products />,
           },
         ],
       },

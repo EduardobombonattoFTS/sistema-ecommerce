@@ -18,6 +18,7 @@ export default function DefaulLayout() {
         <Link to="/dashboard">Dashboard</Link>
         <Link to="/users">Users</Link>
         <Link to="/clients">Clientes</Link>
+        <Link to="/products">Produtos</Link>
       </aside>
       <div className="content">
         <header>
