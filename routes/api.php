@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientAddressController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProductCategorieController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,5 +37,12 @@ Route::controller(ClientAddressController::class)->prefix('clients_address')->na
     Route::post('/create', 'createClientAddressOnDatabase')->name('create');
     Route::put('/update/{client_uuid}', 'updateClientAddressOnDatabase')->name('update');
     Route::delete('/delete/{client_uuid}', 'destroyClientAddressFromDatabase')->name('delete');
+    Route::get('/get_all', 'getAllDataFromDatabase')->name('getAll');
+});
+
+Route::controller(ProductCategorieController::class)->prefix('products_categories')->name('product_categorie')->group(function () {
+    Route::post('/create', 'createProductCategorieOnDatabase')->name('create');
+    Route::put('/update/{product_categorie_id}', 'updateProductCategorieOnDatabase')->name('update');
+    Route::delete('/delete/{product_categorie_id}', 'deleteProductCategorieFromDatabase')->name('delete');
     Route::get('/get_all', 'getAllDataFromDatabase')->name('getAll');
 });
