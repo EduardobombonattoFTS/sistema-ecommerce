@@ -14,6 +14,7 @@ import ProductsLayout from "./views/products/ProductLayout";
 import Products from "./views/products/Products";
 import ProductRegistration from "./views/products/components/ProductRegistration";
 import ProductCategorieRegistration from "./views/products/components/ProductCategorieRegistration";
+import EditProduct from "./views/products/components/EditProduct";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
           {
             path: "categories/registration",
             element: <ProductCategorieRegistration />,
+          },
+          {
+            path: "edit/:uuid",
+            element: <EditProduct />,
           },
         ],
       },

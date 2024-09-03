@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import productService from "./services/products";
 import ShowProducts from "./components/ShowProducts";
 import Notification from "./components/Notification";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -11,6 +11,7 @@ export default function Products() {
   const [searchTerm, setSearchTerm] = useState("");
   const [redirectProductRegistration, setRedirectProductRegistration] =
     useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     productService
@@ -48,6 +49,10 @@ export default function Products() {
     }
   };
 
+  const handleEditProduct = (uuid) => {
+    navigate(`/products/edit/${uuid}`, { state: { products } });
+  };
+
   const handleRedirectProductRegistration = () => {
     setRedirectProductRegistration(true);
   };
@@ -81,7 +86,7 @@ export default function Products() {
       </div>
       <ShowProducts
         productsToShow={productsToShow}
-        // onEditClient={handleEditClient}
+        onEditProduct={handleEditProduct}
         onDeleteProducts={handleDeleteProduct}
       />
     </div>

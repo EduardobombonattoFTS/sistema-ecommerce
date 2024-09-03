@@ -1,4 +1,4 @@
-const ShowProducts = ({ productsToShow, onDeleteProducts }) => {
+const ShowProducts = ({ productsToShow, onDeleteProducts, onEditProduct }) => {
   const maxLength = 20; // Defina o comprimento máximo que deseja exibir
   const truncateText = (text, maxLength) => {
     if (text.length <= maxLength) {
@@ -29,12 +29,12 @@ const ShowProducts = ({ productsToShow, onDeleteProducts }) => {
                 <td>{product.quantity_in_stock}</td>
                 <td>{product.categorie_id}</td>
                 <td>
-                  {/* <button
+                  <button
                     className="edit-button"
-                    onClick={() => onEditClient(product.uuid)}
+                    onClick={() => onEditProduct(product.uuid)}
                   >
                     Editar
-                  </button> */}
+                  </button>
                   <button
                     className="delete-button"
                     onClick={() => onDeleteProducts(product.uuid, product.name)}
