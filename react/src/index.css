@@ -36,6 +36,50 @@ input:focus {
     border-color: #5b08a7;
 }
 
+/* Contêiner flexível para alinhar o select e o botão */
+.select-container {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espaçamento entre o select e o botão */
+}
+
+/* Estilos para o select */
+select {
+  outline: 0;
+  background: #ffffff;
+  width: 100%; /* Ajustar a largura do select */
+  max-width: calc(100% - 120px); /* Ajuste a largura do select para acomodar o botão */
+  border: 2px solid #e6e6e6;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  transition: all 0.3s;
+  height: 50px; /* Defina uma altura fixa para o select */
+}
+
+select:focus {
+  border-color: #5b08a7;
+}
+
+/* Estilos para o botão */
+.select-button {
+  width: 120px; /* Largura fixa do botão */
+  height: 50px; /* Altura igual ao do select */
+  background-color: #5b08a7; /* Cor azul */
+  color: #ffffff; /* Texto branco */
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 0; /* Remover o padding padrão */
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.select-button:hover {
+  background-color: #4a0673; /* Tom de azul mais escuro ao passar o mouse */
+}
+
 .btn,
 .btn-add,
 .btn-edit,

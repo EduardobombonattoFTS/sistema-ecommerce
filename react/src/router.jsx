@@ -12,6 +12,8 @@ import EditClient from "./views/clients/components/EditClient";
 import ClientsLayout from "./views/clients/ClientLayout";
 import ProductsLayout from "./views/products/ProductLayout";
 import Products from "./views/products/Products";
+import ProductRegistration from "./views/products/components/ProductRegistration";
+import ProductCategorieRegistration from "./views/products/components/ProductCategorieRegistration";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +57,14 @@ const router = createBrowserRouter([
           {
             path: "",
             element: <Products />,
+          },
+          {
+            path: "registration",
+            element: <ProductRegistration />,
+          },
+          {
+            path: "categories/registration",
+            element: <ProductCategorieRegistration />,
           },
         ],
       },
