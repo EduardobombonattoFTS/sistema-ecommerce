@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientAddressController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\PaymentMethodsController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProductCategorieController;
 use App\Http\Controllers\ProductController;
@@ -60,5 +61,12 @@ Route::controller(PositionController::class)->prefix('positions')->name('positio
     Route::post('/create', 'createPositionOnDatabase')->name('create');
     Route::put('/update/{product_uuid}', 'updatePositionOnDatabase')->name('update');
     Route::delete('/delete/{product_uuid}', 'deletePositionFromDatabase')->name('delete');
+    Route::get('/get_all', 'getAllDataFromDatabase')->name('getAll');
+});
+
+Route::controller(PaymentMethodsController::class)->prefix('payment_methods')->name('payment_methods')->group(function () {
+    Route::post('/create', 'createPaymentMethodOnDatabase')->name('create');
+    Route::put('/update/{product_uuid}', 'updatePaymentMethodOnDatabase')->name('update');
+    Route::delete('/delete/{product_uuid}', 'deletePaymentMethodFromDatabase')->name('delete');
     Route::get('/get_all', 'getAllDataFromDatabase')->name('getAll');
 });
