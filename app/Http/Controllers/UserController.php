@@ -11,4 +11,28 @@ class UserController extends Controller {
     public function __construct(UserService $service) {
         $this->service = $service;
     }
+    public function getAllDataFromDatabase() {
+        return $this->service->getAllDataFromDatabase();
+    }
+
+    /**
+     * Create a newly resource in database.
+     */
+    public function createUserOnDatabase(Request $request) {
+        return $this->service->createUserOnDatabase($request->all());
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function updateUserOnDatabase(Request $request, $uuid) {
+        return $this->service->updateUserOnDatabase($request->all(), $uuid);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function deleteUserFromDatabase(string $uuid) {
+        return $this->service->destroyUserOnDatabase($uuid);
+    }
 }

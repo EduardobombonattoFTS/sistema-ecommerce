@@ -25,8 +25,11 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::controller(UserController::class)->prefix('users')->name('users')->group(function () {
+Route::controller(ClientController::class)->prefix('clients')->name('clients')->group(function () {
     Route::post('/create', 'createUserOnDatabase')->name('create');
+    Route::put('/update/{client_uuid}', 'updateUserOnDatabase')->name('update');
+    Route::delete('/delete/{client_uuid}', 'deleteUserFromDatabase')->name('delete');
+    Route::get('/get_all', 'getAllDataFromDatabase')->name('getAll');
 });
 
 Route::controller(ClientController::class)->prefix('clients')->name('clients')->group(function () {
