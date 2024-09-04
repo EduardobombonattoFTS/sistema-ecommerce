@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientAddressController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProductCategorieController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -52,5 +53,12 @@ Route::controller(ProductController::class)->prefix('products')->name('products'
     Route::post('/create', 'createProductOnDatabase')->name('create');
     Route::put('/update/{product_uuid}', 'updateProductOnDatabase')->name('update');
     Route::delete('/delete/{product_uuid}', 'deleteProductFromDatabase')->name('delete');
+    Route::get('/get_all', 'getAllDataFromDatabase')->name('getAll');
+});
+
+Route::controller(PositionController::class)->prefix('positions')->name('positions')->group(function () {
+    Route::post('/create', 'createPositionOnDatabase')->name('create');
+    Route::put('/update/{product_uuid}', 'updatePositionOnDatabase')->name('update');
+    Route::delete('/delete/{product_uuid}', 'deletePositionFromDatabase')->name('delete');
     Route::get('/get_all', 'getAllDataFromDatabase')->name('getAll');
 });
