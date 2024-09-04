@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientAddressController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentMethodsController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProductCategorieController;
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::controller(ClientController::class)->prefix('clients')->name('clients')->group(function () {
+Route::controller(UserController::class)->prefix('users')->name('users')->group(function () {
     Route::post('/create', 'createUserOnDatabase')->name('create');
     Route::put('/update/{client_uuid}', 'updateUserOnDatabase')->name('update');
     Route::delete('/delete/{client_uuid}', 'deleteUserFromDatabase')->name('delete');
@@ -71,5 +72,12 @@ Route::controller(PaymentMethodsController::class)->prefix('payment_methods')->n
     Route::post('/create', 'createPaymentMethodOnDatabase')->name('create');
     Route::put('/update/{product_uuid}', 'updatePaymentMethodOnDatabase')->name('update');
     Route::delete('/delete/{product_uuid}', 'deletePaymentMethodFromDatabase')->name('delete');
+    Route::get('/get_all', 'getAllDataFromDatabase')->name('getAll');
+});
+
+Route::controller(OrderController::class)->prefix('orders')->name('orders')->group(function () {
+    Route::post('/create', 'createOrderOnDatabase')->name('create');
+    Route::put('/update/{product_uuid}', 'updateOrderOnDatabase')->name('update');
+    Route::delete('/delete/{product_uuid}', 'deleteOrderFromDatabase')->name('delete');
     Route::get('/get_all', 'getAllDataFromDatabase')->name('getAll');
 });
