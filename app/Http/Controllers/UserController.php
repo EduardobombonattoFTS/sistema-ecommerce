@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SignUpRequest;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class UserController extends Controller {
     /**
      * Create a newly resource in database.
      */
-    public function createUserOnDatabase(Request $request) {
+    public function createUserOnDatabase(SignUpRequest $request) {
         return $this->service->createUserOnDatabase($request->all());
     }
 

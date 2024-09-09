@@ -74,7 +74,8 @@ class UserService {
             $create = $this->model->create($data);
             if (!$create)
                 return $this->notFound("Não foi possível cadastrar o usuarios, favor verificar os dados.", [], false);
-
+            $token = $create->createToken('main')->plainTextToken;
+            $create['token'] = $token;
             return $this->success("usuarios cadastrado com sucesso.", $create, 200, false);
         } catch (\Exception $e) {
 
