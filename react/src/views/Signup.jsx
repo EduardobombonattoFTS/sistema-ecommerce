@@ -33,7 +33,6 @@ export default function Signup() {
       .then((response) => {
         setUser(response.data.data);
         setToken(response.data.data.token);
-        debugger;
       })
       .catch((error) => {
         const response = error.response;
